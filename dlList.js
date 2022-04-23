@@ -204,4 +204,20 @@ class dlList {
 
     return -1;
   }
+
+  clear() {
+    this.#head = null;
+    this.#tail = null;
+    this.#length = 0;
+  }
+
+  extend(list) {
+    let currIndex = 0;
+    if (list.length() !== 0) {
+      while (currIndex < list.length()) {
+        this.append(list.get(currIndex));
+        currIndex++;
+      }
+    }
+  }
 }
