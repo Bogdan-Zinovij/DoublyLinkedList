@@ -277,4 +277,62 @@ describe('method append', () => {
       expect(list.length()).toBe(3);
     });
   });
+
+  describe('method findFirst', () => {
+    test('should find the first of two suitable list item', () => {
+      const list = new dlList();
+      ['1', '2', '3', '1'].forEach((value) => list.append(value));
+
+      expect(list.findFirst('1')).toBe(0);
+    });
+
+    test('should find the first suitable list item', () => {
+      const list = new dlList();
+      ['1', '2', '3', '1'].forEach((value) => list.append(value));
+
+      expect(list.findFirst('2')).toBe(1);
+    });
+
+    test('should return -1 when trying to find an item that is not in the list', () => {
+      const list = new dlList();
+      ['1', '2', '3', '1'].forEach((value) => list.append(value));
+
+      expect(list.findFirst('4')).toBe(-1);
+    });
+
+    test('should return -1 when trying to find an item in an empty list', () => {
+      const list = new dlList();
+
+      expect(list.findFirst('4')).toBe(-1);
+    });
+  });
+
+  describe('method findLast', () => {
+    test('should find the last element of the two suitable', () => {
+      const list = new dlList();
+      ['1', '2', '3', '1'].forEach((value) => list.append(value));
+
+      expect(list.findLast('1')).toBe(3);
+    });
+
+    test('should find the only suitable element', () => {
+      const list = new dlList();
+      ['1', '2', '3', '1'].forEach((value) => list.append(value));
+
+      expect(list.findLast('2')).toBe(1);
+    });
+
+    test('should return -1 when trying to find an item that is not in the list', () => {
+      const list = new dlList();
+      ['1', '2', '3', '1'].forEach((value) => list.append(value));
+
+      expect(list.findLast('4')).toBe(-1);
+    });
+
+    test('should return -1 when trying to find an item in an empty list', () => {
+      const list = new dlList();
+
+      expect(list.findLast('4')).toBe(-1);
+    });
+  });
 });
