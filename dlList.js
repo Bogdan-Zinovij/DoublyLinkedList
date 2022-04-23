@@ -74,4 +74,36 @@ class dlList {
       }
     }
   }
+
+  delete(index) {
+    if (index < 0 || index >= this.#length) {
+      throw new Error('Incorrect index');
+    }
+
+    if (index === 0) {
+      this.#head = this.#head.next;
+      this.#head.prev = null;
+    } else if (index === this.#length - 1) {
+      this.#tail = this.#tail.prev;
+      this.#tail.next = null;
+    } else {
+      let currIndex = 0;
+      let currNode = this.#head;
+
+      while (currIndex < this.#length) {
+        if (currIndex === index - 1) {
+          currNode.next = currNode.next.next;
+          currNode.next.prev = currNode;
+          this.#length--;
+
+          return;
+        }
+
+        currNode = currNode.next;
+        currIndex++;
+      }
+    }
+
+    this.#length--;
+  }
 }
