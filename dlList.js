@@ -21,4 +21,57 @@ class dlList {
   length() {
     return this.#length;
   }
+
+  append(character) {
+    const node = new Node(character);
+
+    if (this.#length === 0) {
+      this.#head = node;
+    } else {
+      let currNode = this.#head;
+
+      while (currNode.next !== null) {
+        currNode = currNode.next;
+      }
+
+      currNode.next = node;
+      node.prev = currNode;
+    }
+
+    this.#tail = node;
+    this.#length++;
+  }
+
+  insert(character, index) {
+    if (index < 0 || index >= this.#length) {
+      throw new Error('Incorrect index');
+    }
+
+    const node = new Node(character);
+
+    if (index === 0) {
+      node.next = this.#head;
+      this.#head.prev = node;
+      this.#head = node;
+      this.#length++;
+    } else {
+      let currIndex = 0;
+      let currNode = this.#head;
+
+      while (currIndex < this.#length) {
+        if (currIndex === index - 1) {
+          node.next = currNode.next;
+          currNode.next.prev = node;
+          node.prev = currNode;
+          currNode.next = node;
+          this.#length++;
+
+          return;
+        }
+
+        currNode = currNode.next;
+        currIndex++;
+      }
+    }
+  }
 }
