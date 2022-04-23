@@ -106,4 +106,19 @@ class dlList {
 
     this.#length--;
   }
+
+  deleteAll(character) {
+    let currNode = this.#head;
+    let currIndex = 0;
+
+    while (currNode) {
+      if (currNode.value === character) {
+        currNode = currNode.next;
+        this.delete(currIndex);
+      } else {
+        currNode = currNode.next;
+        currIndex++;
+      }
+    }
+  }
 }
