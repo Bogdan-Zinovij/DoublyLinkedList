@@ -170,4 +170,47 @@ describe('method append', () => {
       expect(() => list.insert('4', 3)).toThrow('Incorrect index');
     });
   });
+
+  describe('method delete', () => {
+    test('should delete the first item in the list', () => {
+      const list = new dlList();
+      ['1', '2', '3'].forEach((value) => list.append(value));
+      list.delete(0);
+
+      expect(list.get(0)).toBe('2');
+      expect(list.length()).toBe(2);
+    });
+
+    test('should delete the last item in the list', () => {
+      const list = new dlList();
+      ['1', '2', '3'].forEach((value) => list.append(value));
+      list.delete(2);
+
+      expect(() => list.get(2)).toThrow('Incorrect index');
+      expect(list.length()).toBe(2);
+    });
+
+    test('should delete the list item in the middle', () => {
+      const list = new dlList();
+      ['1', '2', '3'].forEach((value) => list.append(value));
+      list.delete(1);
+
+      expect(list.get(1)).toBe('3');
+      expect(list.length()).toBe(2);
+    });
+
+    test('should throw an error when trying to delete an element with an index less than 0', () => {
+      const list = new dlList();
+      ['1', '2', '3'].forEach((value) => list.append(value));
+
+      expect(() => list.delete(-1)).toThrow('Incorrect index');
+    });
+
+    test('should throw an error when trying to delete an element with an index greater than the length of the list', () => {
+      const list = new dlList();
+      ['1', '2', '3'].forEach((value) => list.append(value));
+
+      expect(() => list.delete(3)).toThrow('Incorrect index');
+    });
+  });
 });
