@@ -213,4 +213,37 @@ describe('method append', () => {
       expect(() => list.delete(3)).toThrow('Incorrect index');
     });
   });
+
+  describe('method deleteAll', () => {
+    test('should delete two identical values', () => {
+      const list = new dlList();
+      ['1', '2', '3', '1'].forEach((value) => list.append(value));
+      list.deleteAll('1');
+
+      expect(list.get(0)).toBe('2');
+      expect(list.get(1)).toBe('3');
+      expect(list.length()).toBe(2);
+    });
+
+    test('should delete one value', () => {
+      const list = new dlList();
+      ['1', '2', '3'].forEach((value) => list.append(value));
+      list.deleteAll('2');
+
+      expect(list.get(0)).toBe('1');
+      expect(list.get(1)).toBe('3');
+      expect(list.length()).toBe(2);
+    });
+
+    test('should try to find an item that is not in the list and do nothing', () => {
+      const list = new dlList();
+      ['1', '2', '3'].forEach((value) => list.append(value));
+      list.deleteAll('4');
+
+      expect(list.get(0)).toBe('1');
+      expect(list.get(1)).toBe('2');
+      expect(list.get(2)).toBe('3');
+      expect(list.length()).toBe(3);
+    });
+  });
 });
