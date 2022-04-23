@@ -221,3 +221,5 @@ class dlList {
     }
   }
 }
+
+module.exports = dlList;
