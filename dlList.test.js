@@ -380,4 +380,56 @@ describe('method append', () => {
       expect(list.length()).toBe(0);
     });
   });
+
+  describe('method extend', () => {
+    test('should extend an existing list', () => {
+      const list = new dlList();
+      ['1', '2', '3'].forEach((value) => list.append(value));
+      const list2 = new dlList();
+      ['4', '5', '6'].forEach((value) => list2.append(value));
+      list.extend(list2);
+
+      expect(list.get(3)).toBe('4');
+      expect(list.get(4)).toBe('5');
+      expect(list.get(5)).toBe('6');
+      expect(list.length()).toBe(6);
+    });
+
+    test('should extend the list with another empty list', () => {
+      const list = new dlList();
+      ['1', '2', '3'].forEach((value) => list.append(value));
+      const list2 = new dlList();
+      list.extend(list2);
+
+      expect(list.get(0)).toBe('1');
+      expect(list.get(1)).toBe('2');
+      expect(list.get(2)).toBe('3');
+      expect(list.length()).toBe(3);
+    });
+
+    test('should extend the empty list with another non-empty list', () => {
+      const list = new dlList();
+      const list2 = new dlList();
+      ['1', '2', '3'].forEach((value) => list.append(value));
+      list.extend(list2);
+
+      expect(list.get(0)).toBe('1');
+      expect(list.get(1)).toBe('2');
+      expect(list.get(2)).toBe('3');
+      expect(list.length()).toBe(3);
+    });
+
+    test('should not be affected by changes to the second list on the extennded list', () => {
+      const list = new dlList();
+      ['1', '2', '3'].forEach((value) => list.append(value));
+      const list2 = new dlList();
+      ['3', '4', '5'].forEach((value) => list2.append(value));
+      list.extend(list2);
+      list.delete(5);
+      list.delete(0);
+
+      expect(list2.length()).toBe(3);
+      expect(list.length()).toBe(4);
+    });
+  });
 });
