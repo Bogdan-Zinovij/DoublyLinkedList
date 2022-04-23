@@ -335,4 +335,32 @@ describe('method append', () => {
       expect(list.findLast('4')).toBe(-1);
     });
   });
+
+  describe('method reverse', () => {
+    test('should reverse elements in the list', () => {
+      const list = new dlList();
+      ['1', '2', '3'].forEach((value) => list.append(value));
+      list.reverse();
+
+      expect(list.get(0)).toBe('3');
+      expect(list.get(1)).toBe('2');
+      expect(list.get(2)).toBe('1');
+      expect(list.length()).toBe(3);
+    });
+
+    test('should reverse a list with only one element', () => {
+      const list = new dlList();
+      ['1'].forEach((value) => list.append(value));
+      list.reverse();
+
+      expect(list.get(0)).toBe('1');
+    });
+
+    test('should reverse an empty list', () => {
+      const list = new dlList();
+      list.reverse();
+
+      expect(list.length()).toBe(0);
+    });
+  });
 });
