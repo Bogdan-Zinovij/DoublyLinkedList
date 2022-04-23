@@ -12,3 +12,13 @@ class Node {
     this.prev = null;
   }
 }
+
+class dlList {
+  #head = null;
+  #tail = null;
+  #length = 0;
+
+  length() {
+    return this.#length;
+  }
+}
