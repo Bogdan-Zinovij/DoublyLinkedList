@@ -429,7 +429,7 @@ describe('method append', () => {
       list.delete(0);
 
       expect(list2.length()).toBe(3);
-      expect(list.length()).toBe(4);
+      expect(list.length()).toBe(5);
     });
   });
 });
