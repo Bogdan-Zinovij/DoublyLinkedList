@@ -71,4 +71,26 @@ describe('method append', () => {
     expect(list.get(2)).toBe('3');
     expect(list.length()).toBe(3);
   });
+
+  describe('method length', () => {
+    test('should return the length of an empty list', () => {
+      const list = new dlList();
+
+      expect(list.length()).toBe(0);
+    });
+
+    test('should return the length of the list with one element', () => {
+      const list = new dlList();
+      list.append('1');
+
+      expect(list.length()).toBe(1);
+    });
+
+    test('should return the length of a list with several items', () => {
+      const list = new dlList();
+      ['1', '2', '3', '4', '5'].forEach((value) => list.append(value));
+
+      expect(list.length()).toBe(5);
+    });
+  });
 });
