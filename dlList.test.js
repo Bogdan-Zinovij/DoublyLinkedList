@@ -246,4 +246,35 @@ describe('method append', () => {
       expect(list.length()).toBe(3);
     });
   });
+
+  describe('method clone', () => {
+    test('should create a copy of the list', () => {
+      const list = new dlList();
+      ['1', '2', '3'].forEach((value) => list.append(value));
+      const listCopy = list.clone();
+
+      expect(listCopy.get(0)).toBe('1');
+      expect(listCopy.get(1)).toBe('2');
+      expect(listCopy.get(2)).toBe('3');
+      expect(listCopy.length()).toBe(3);
+    });
+
+    test('should clone an empty list', () => {
+      const list = new dlList();
+      const listCopy = list.clone();
+
+      expect(listCopy.length()).toBe(0);
+    });
+
+    test('the changes to the copy of the list must not affect the original list', () => {
+      const list = new dlList();
+      ['1', '2', '3'].forEach((value) => list.append(value));
+
+      const listCopy = list.clone();
+      listCopy.delete(2);
+
+      expect(list.get(2)).toBe('3');
+      expect(list.length()).toBe(3);
+    });
+  });
 });
