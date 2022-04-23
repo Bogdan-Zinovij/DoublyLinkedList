@@ -136,4 +136,38 @@ describe('method append', () => {
       expect(list.get(2)).toBe('3');
     });
   });
+
+  describe('method insert', () => {
+    test('should insert a character at the beginning of the list', () => {
+      const list = new dlList();
+      ['1', '2', '3'].forEach((value) => list.append(value));
+      list.insert('0', 0);
+
+      expect(list.get(0)).toBe('0');
+      expect(list.length()).toBe(4);
+    });
+
+    test('should insert a character at the third position in the list', () => {
+      const list = new dlList();
+      ['1', '2', '4'].forEach((value) => list.append(value));
+      list.insert('3', 2);
+
+      expect(list.get(2)).toBe('3');
+      expect(list.length()).toBe(4);
+    });
+
+    test('should throw an error when trying to insert an item at a position with an index less than 0', () => {
+      const list = new dlList();
+      ['1', '2', '3'].forEach((value) => list.append(value));
+
+      expect(() => list.insert('0', -1)).toThrow('Incorrect index');
+    });
+
+    test('should throw an error when trying to insert an item at a position with an index greater than the length of the list', () => {
+      const list = new dlList();
+      ['1', '2', '3'].forEach((value) => list.append(value));
+
+      expect(() => list.insert('4', 3)).toThrow('Incorrect index');
+    });
+  });
 });
