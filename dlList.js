@@ -121,4 +121,22 @@ class dlList {
       }
     }
   }
+
+  get(index) {
+    if (index < 0 || index >= this.#length) {
+      throw new Error('Incorrect index');
+    }
+
+    let currIndex = 0;
+    let currNode = this.#head;
+
+    while (currIndex < this.#length) {
+      if (currIndex === index) {
+        return currNode.value;
+      }
+
+      currNode = currNode.next;
+      currIndex++;
+    }
+  }
 }
