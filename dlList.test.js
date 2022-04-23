@@ -363,4 +363,21 @@ describe('method append', () => {
       expect(list.length()).toBe(0);
     });
   });
+
+  describe('method clear', () => {
+    test('should clear a list', () => {
+      const list = new dlList();
+      ['1', '2', '3'].forEach((value) => list.append(value));
+      list.clear();
+
+      expect(list.length()).toBe(0);
+    });
+
+    test('should clear an empty list', () => {
+      const list = new dlList();
+      list.clear();
+
+      expect(list.length()).toBe(0);
+    });
+  });
 });
