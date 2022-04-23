@@ -93,4 +93,47 @@ describe('method append', () => {
       expect(list.length()).toBe(5);
     });
   });
+
+  describe('method get', () => {
+    test('should throw an error when trying to find an element with an index less than 0', () => {
+      const list = new dlList();
+      ['1', '2', '3'].forEach((value) => list.append(value));
+
+      expect(() => list.get(-1)).toThrow('Incorrect index');
+    });
+
+    test('should throw an error when trying to find an item with an index longer than the list length', () => {
+      const list = new dlList();
+      ['1', '2', '3'].forEach((value) => list.append(value));
+
+      expect(() => list.get(3)).toThrow('Incorrect index');
+    });
+
+    test('should throw an error when trying to find the first item in an empty list', () => {
+      const list = new dlList();
+
+      expect(() => list.get(0)).toThrow('Incorrect index');
+    });
+
+    test('should return the first element of the list', () => {
+      const list = new dlList();
+      ['1', '2', '3', '4', '5'].forEach((value) => list.append(value));
+
+      expect(list.get(0)).toBe('1');
+    });
+
+    test('should return the last element of the list', () => {
+      const list = new dlList();
+      ['1', '2', '3', '4', '5'].forEach((value) => list.append(value));
+
+      expect(list.get(4)).toBe('5');
+    });
+
+    test('should return the third element of the list', () => {
+      const list = new dlList();
+      ['1', '2', '3', '4', '5'].forEach((value) => list.append(value));
+
+      expect(list.get(2)).toBe('3');
+    });
+  });
 });
