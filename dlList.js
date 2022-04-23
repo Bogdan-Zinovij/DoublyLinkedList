@@ -139,4 +139,37 @@ class dlList {
       currIndex++;
     }
   }
+
+  clone() {
+    const newList = new dlList();
+    let currNode = this.#head;
+
+    for (let i = 0; i < this.#length; i++) {
+      newList.append(currNode.value);
+
+      if (currNode.next) {
+        currNode = currNode.next;
+      }
+    }
+
+    return newList;
+  }
+
+  reverse() {
+    let currNode = this.#head;
+    let prevNode = null;
+    let nextNode = null;
+
+    while (currNode) {
+      nextNode = currNode.next;
+      prevNode = currNode.prev;
+      currNode.next = prevNode;
+      currNode.prev = nextNode;
+      prevNode = currNode;
+      currNode = nextNode;
+    }
+
+    this.#tail = this.head;
+    this.#head = prevNode;
+  }
 }
