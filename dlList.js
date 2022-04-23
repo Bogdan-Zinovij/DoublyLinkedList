@@ -172,4 +172,36 @@ class dlList {
     this.#tail = this.head;
     this.#head = prevNode;
   }
+
+  findFirst(character) {
+    let currNode = this.#head;
+    let currIndex = 0;
+
+    while (currIndex < this.#length - 1) {
+      if (currNode.value === character) {
+        return currIndex;
+      } else if (currNode.next !== null) {
+        currNode = currNode.next;
+        currIndex++;
+      }
+    }
+
+    return -1;
+  }
+
+  findLast(character) {
+    let currNode = this.#tail;
+    let currIndex = this.#length - 1;
+
+    while (currIndex > 0) {
+      if (currNode.value === character) {
+        return currIndex;
+      } else if (currNode.prev !== null) {
+        currNode = currNode.prev;
+        currIndex--;
+      }
+    }
+
+    return -1;
+  }
 }
